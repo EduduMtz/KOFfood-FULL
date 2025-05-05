@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administrador - KofFood</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container mt-5">
+  <div id="loginAdmin">
+    <h2 class="mb-4">Login Administrador</h2>
+    <div class="mb-3"><input type="text" id="usuario" class="form-control" placeholder="Usuario"></div>
+    <div class="mb-3"><input type="password" id="contrasena" class="form-control" placeholder="Contraseña"></div>
+    <button id="btnLogin" class="btn btn-primary">Entrar</button>
+  </div>
+
+  <div id="panelAdmin" style="display: none;" class="mt-5">
+    <h2>Gestión de Productos</h2>
+
+    <form id="formProducto" class="mb-4">
+      <div class="mb-3"><input type="text" id="nombreProducto" class="form-control" placeholder="Nombre del Producto" required></div>
+      <div class="mb-3"><textarea id="descripcionProducto" class="form-control" placeholder="Descripción" required></textarea></div>
+      <div class="mb-3"><input type="number" id="precioProducto" class="form-control" placeholder="Precio base" required></div>
+      <div class="mb-3">
+        <select id="categoriaProducto" class="form-control" required>
+          <option value="">Seleccione Categoría</option>
+          <option value="bebestibles">Bebestibles</option>
+          <option value="comida">Comida</option>
+          <option value="combos">Combos</option>
+        </select>
+      </div>
+      <div class="mb-3"><input type="file" id="imagenProducto" class="form-control" accept="image/*" required></div>
+      <div class="mb-3"><input type="text" id="preparacionesProducto" class="form-control" placeholder="Preparaciones (opcional, separadas por coma)"></div>
+      <div class="mb-3">
+        <label>Ingredientes disponibles</label>
+        <select id="ingredientesProducto" class="form-control" multiple></select>
+        <small class="form-text text-muted">Ctrl/Cmd + clic para seleccionar varios</small>
+      </div>
+      <button type="submit" class="btn btn-success">Agregar Producto</button>
+    </form>
+
+    <h3>Productos Existentes</h3>
+    <table class="table" id="tablaProductos">
+      <thead>
+        <tr>
+          <th>Nombre</th><th>Descripción</th><th>Precio</th><th>Categoría</th><th>Imagen</th><th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <hr class="my-5">
+    <h3>Gestión de Ingredientes</h3>
+    <div class="mb-3 d-flex">
+      <input type="text" id="nuevoIngrediente" class="form-control me-2" placeholder="Nombre del ingrediente">
+      <input type="number" id="precioIngrediente" class="form-control me-2" placeholder="Precio">
+      <button class="btn btn-success" onclick="agregarIngrediente()">Agregar Ingrediente</button>
+    </div>
+    <ul id="listaIngredientes" class="list-group mb-4"></ul>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
