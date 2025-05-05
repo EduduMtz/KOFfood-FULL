@@ -11,6 +11,7 @@
 <body>
 
 <div class="container mt-5">
+  <!-- LOGIN -->
   <div id="loginAdmin">
     <h2 class="mb-4">Login Administrador</h2>
     <div class="mb-3"><input type="text" id="usuario" class="form-control" placeholder="Usuario"></div>
@@ -18,36 +19,47 @@
     <button id="btnLogin" class="btn btn-primary">Entrar</button>
   </div>
 
+  <!-- PANEL ADMIN -->
   <div id="panelAdmin" style="display: none;" class="mt-5">
     <h2>Gestión de Productos</h2>
-
-    <form id="formProducto" class="mb-4">
-      <div class="mb-3"><input type="text" id="nombreProducto" class="form-control" placeholder="Nombre del Producto" required></div>
-      <div class="mb-3"><textarea id="descripcionProducto" class="form-control" placeholder="Descripción" required></textarea></div>
-      <div class="mb-3"><input type="number" id="precioProducto" class="form-control" placeholder="Precio base" required></div>
+    <form id="formProducto" enctype="multipart/form-data">
       <div class="mb-3">
-        <select id="categoriaProducto" class="form-control" required>
+        <input type="text" name="nombre" id="nombreProducto" class="form-control" placeholder="Nombre del Producto" required>
+      </div>
+      <div class="mb-3">
+        <textarea name="descripcion" id="descripcionProducto" class="form-control" placeholder="Descripción" required></textarea>
+      </div>
+      <div class="mb-3">
+        <input type="number" name="precio" id="precioProducto" class="form-control" placeholder="Precio" required>
+      </div>
+      <div class="mb-3">
+        <select name="categoria" id="categoriaProducto" class="form-control" required>
           <option value="">Seleccione Categoría</option>
-          <option value="bebestibles">Bebestibles</option>
           <option value="comida">Comida</option>
+          <option value="bebestibles">Bebestibles</option>
           <option value="combos">Combos</option>
         </select>
       </div>
-      <div class="mb-3"><input type="file" id="imagenProducto" class="form-control" accept="image/*" required></div>
-      <div class="mb-3"><input type="text" id="preparacionesProducto" class="form-control" placeholder="Preparaciones (opcional, separadas por coma)"></div>
       <div class="mb-3">
-        <label>Ingredientes disponibles</label>
-        <select id="ingredientesProducto" class="form-control" multiple></select>
-        <small class="form-text text-muted">Ctrl/Cmd + clic para seleccionar varios</small>
+        <input type="file" name="imagen" id="imagenProducto" class="form-control" accept="image/*" required>
       </div>
+      <div class="mb-3">
+        <input type="text" name="preparaciones" id="preparacionesProducto" class="form-control" placeholder="Preparaciones (separadas por coma)">
+      </div>
+      <!-- Ingredientes removidos de la creación -->
       <button type="submit" class="btn btn-success">Agregar Producto</button>
     </form>
 
-    <h3>Productos Existentes</h3>
+    <h3 class="mt-5">Productos Existentes</h3>
     <table class="table" id="tablaProductos">
       <thead>
         <tr>
-          <th>Nombre</th><th>Descripción</th><th>Precio</th><th>Categoría</th><th>Imagen</th><th>Acciones</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Categoría</th>
+          <th>Imagen</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody></tbody>

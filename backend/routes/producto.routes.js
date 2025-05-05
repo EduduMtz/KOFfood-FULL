@@ -1,14 +1,20 @@
 // backend/routes/producto.routes.js
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/producto.controller');
+const multer = require('multer');
+const path = require('path');
+const productoController = require('../controllers/producto.controller');
 
-router.get('/', controller.obtenerProductos);
-router.post('/', controller.crearProducto);
-router.put('/:id', controller.editarProducto);
-router.delete('/:id', controller.eliminarProducto);
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => cb(null, 'uploads/'),
+    filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
+});
 
+const upload = multer({ storage });
 
-
+router.get('/', productoController.obtenerProductos);
+router.post('/', upload.single('imagen'), productoController.crearProducto);
+router.put('/:id', upload.single('imagen'), productoController.editarProducto);
+router.delete('/:id', productoController.eliminarProducto);
 
 module.exports = router;
